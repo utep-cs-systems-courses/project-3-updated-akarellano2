@@ -46,8 +46,8 @@ void drawFish(u_char col, u_char row,  u_int colorBGR, u_char center)
   //tail for fish, two triangles combined
   for(r = center; r > 0; r--){
     for(c = center; c>=r; c--){
-      drawPixel(col + c, row+ r, colorBGR);
-      drawPixel(col + c, row-r+1, colorBGR);
+      drawPixel(col + c, row+ r, colorBGR);// bottom tail
+      drawPixel(col + c, row-r+1, colorBGR); // top tail
     }
   }
 
@@ -55,6 +55,12 @@ void drawFish(u_char col, u_char row,  u_int colorBGR, u_char center)
   fillRectangle(col-(center*2-center/2),row-center/2,center*2, center, colorBGR);
   //eye of the fish
   fillRectangle(col-center-center/4, row-center/4, center/4, center/4, COLOR_BLACK);
+  //fin of fish
+  for(r = center/2; r > 0; r--){
+    for(c = center/2; c>=r; c--){
+      drawPixel(col/2 + c, row+center/4+ r, COLOR_RED);// bottom tail
+    }
+  }
  
 }
 
