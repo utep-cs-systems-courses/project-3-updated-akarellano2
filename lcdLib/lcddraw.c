@@ -36,6 +36,27 @@ void fillRectangle(u_char colMin, u_char rowMin, u_char width, u_char height,
     lcd_writeColor(colorBGR);
   }
 }
+/* will draw figure of fish */
+void drawFish(u_char col, u_char row,  u_int colorBGR, u_char center)
+{
+  
+  u_char r;
+  u_char c; 
+ 
+  //tail for fish, two triangles combined
+  for(r = center; r > 0; r--){
+    for(c = center; c>=r; c--){
+      drawPixel(col + c, row+ r, colorBGR);
+      drawPixel(col + c, row-r+1, colorBGR);
+    }
+  }
+
+  //body of the fish
+  fillRectangle(col-(center*2-center/2),row-center/2,center*2, center, colorBGR);
+  //eye of the fish
+  fillRectangle(col-center-center/4, row-center/4, center/4, center/4, COLOR_BLACK);
+ 
+}
 
 /** Clear screen (fill with color)
  *  
