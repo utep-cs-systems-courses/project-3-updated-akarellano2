@@ -60,10 +60,30 @@ void drawFish(u_char col, u_char row,  u_int colorBGR, u_char center)
     for(c = center/2; c>=r; c--){
       drawPixel(col/2 + c, row+center/4+ r, COLOR_RED);// bottom tail
     }
-  }
- 
+  } 
 }
 
+void drawDiamond(u_char col, u_char row, u_char center, u_int colorBGR)
+{
+  u_char r;
+  u_char c;
+
+  //top part of the diamond
+  for(r = 0; r< center; r++){
+    for(c = 0; c < r; c++){
+      drawPixel(center+col + c, row+r, colorBGR);
+      drawPixel(center+col - c,row+r, colorBGR);
+    }  
+  }
+
+  for(c = 0; c < center; c++){
+    for(r = center; r < center*2 -c; r++){
+      drawPixel(center+col + c,row+r, colorBGR);
+      drawPixel(center+col - c,row+r, colorBGR);
+    }
+  }
+  
+}
 /** Clear screen (fill with color)
  *  
  *  \param colorBGR The color to fill screen
