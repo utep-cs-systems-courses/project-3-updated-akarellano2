@@ -2,6 +2,8 @@
 #include "stateMachine.h"
 #include "led.h"
 #include "switches.h"
+#include "lcddraw.h"
+#include "lcdutils.h"
 
 char B1, B2, B3, B4;
 char switch_state_down;

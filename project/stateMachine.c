@@ -4,8 +4,8 @@
 #include "switches.h"
 #include "buzzer.h"
 #include "led.h"
-#include "../lcdLib/lcdutils.h"
-#include "../lcdLib/lcddraw.h"
+#include "lcdutils.h"
+#include "lcddraw.h"
 
 #define C4 1911
 #define D4 1703
@@ -67,19 +67,19 @@ void diamond_colors()
   static char change_color = 0;
   switch(change_color = 0){
   case 0:
-    drawDiamond(40, 40, 20, COLOR_PINK);
+    // drawDiamond(40, 40, 20, COLOR_PINK);
     change_color++;
     break;
   case 1:
-    drawDiamond(40, 40, 20, COLOR_GREEN);
+    // drawDiamond(40, 40, 20, COLOR_GREEN);
     change_color++;
     break;
   case 2:
-    drawDiamond(40, 40, 20, COLOR_BLUE);
+    //drawDiamond(40, 40, 20, COLOR_BLUE);
     change_color++;
     break;
   case 3:
-    drawDiamond(40, 40, 20, COLOR_ORANGE);
+    // drawDiamond(40, 40, 20, COLOR_ORANGE);
     change_color = 0;
     break;
   }
@@ -123,3 +123,22 @@ char alternate_led() // will make both alternate
   }
 }
 */
+void state_advance()
+{
+  switch(switch_state_changed){
+  case 1:
+    toggle_green();
+    // buzzer_advance();
+    // blink_count = 0;
+  case 2:
+    red_blink();
+    // clearScreen(COLOR_PINK);
+  case 3:
+    alternate();
+     diamond_colors();
+     // blink_count = 0;
+  case 4:
+    toggle_green();
+
+  }
+}
