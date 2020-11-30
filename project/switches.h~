@@ -9,9 +9,8 @@
 void switch_init();
 void switch_interrupt_handler();
 
-extern char B1, B2, B3, B4;
-extern char switch_state_changed;
-extern char switch_state_down;
+extern char s1, s2, s3, s4;
+extern char swtich_state_changed;
 //extern char state;
 
 #endif

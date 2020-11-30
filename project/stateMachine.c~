@@ -1,0 +1,56 @@
+
+#include <msp430.h>
+#include "stateMachine.h"
+#include "switches.h"
+#include "buzzer.h"
+#include "led.h"
+
+static char state = 0;
+static char sb = 1;
+
+char toggle_red() // will make red led turn on
+{
+  red_on = 1;
+  green_on = 0;
+  led_changed = 1;
+  led_update();
+}
+
+char toggle_green() //will make green led turn on
+{
+  green_on = 1;
+  red_on - 0;
+  led_changed = 1;
+  led_update();
+}
+
+char alternate_led() // will make both alternate
+{
+  switch(state){
+
+  case 0:
+    toggle_red();
+    state = 1; //advancing state
+    break;
+
+  case 1:
+    toggle_green();
+    state = 0;
+    break;
+  }
+}
+
+void buzzer()
+{
+  static int num = 500;
+  if(sb) {
+    toggle_red();
+    num+= 225;
+  }
+  else {
+    toggle_green();
+    num -= 450;
+  }
+  short cycles = 2000000 / num;
+  buzzer_set_period(cycles);
+}

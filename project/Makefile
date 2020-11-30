@@ -9,7 +9,7 @@ AS		= msp430-elf-as
 
 all: main.elf
 
-main.elf: ${THINGS} main.o p2interruptHandler.o led.o switches.o buzzer.o stateMachine.o ../lib/libTimer.a
+main.elf: ${THINGS} main.o wdInterruptHandler.o p2interruptHandler.o led.o switches.o buzzer.o stateMachine.o ../lib/libTimer.a 
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^
 
 load: main.elf 
