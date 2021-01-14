@@ -23,22 +23,22 @@ void wdt_c_handler()
     color = (color == COLOR_GREEN) ? COLOR_PINK : COLOR_GREEN;
     //redrawScreen = 1;
     }*/
-  if (secCount == 250 & switch_state_down == 0){
-    // redrawScreen = 1;
+  if (++secCount == 62 & switch_state_down == 0){ // called every 1/4 of a sec
+    redrawScreen = 1;
     secCount = 0;
   }
-  else if ( secCount != 250 && switch_state_down == 1){
+  else if ( secCount == 250 && switch_state_down == 1){ // every second fish 2
     secCount = 0;
-    //redrawScreen = 1;
+    redrawScreen = 1;
   }
   
-  else if (secCount != 250 && switch_state_down ==2){
+  else if (secCount ==  62 && switch_state_down ==2){ // called 1/4 sec diamond changing color
      secCount = 0;
-    //redrawScreen = 1;
+     redrawScreen = 1;
   }
-  else if(secCount != 250 && switch_state_down == 3){
+  else if(secCount != 250 && switch_state_down == 3){ // led and reset
     secCount = 0;
-    // redrawScreen = 1;
+    redrawScreen = 1;
   }
 }
 
@@ -71,42 +71,7 @@ void main()
      state_advance();
   }
   
-  /*
-  while(1){
-   
-
-    
-    switch(switch_state_down){
-      case 1:
-        fish();
-	break;
-      case 2:
-	
-	fish2();
-	buzzer();
-	break;
-      case 3:
-        changeColor();
-	break;
-      case 4:
-	clearScreen(COLOR_YELLOW);
-	//horizontal, vertical
-       drawString11x16(5, 10, "B1 find", color, COLOR_BLUE);
-       drawString11x16(5, 30, "Nemo", color, COLOR_BLUE);
-  
-       drawString11x16(5, 55, "B2 find", color, COLOR_BLUE);
-       drawString11x16(5, 75, "Dory", color, COLOR_BLUE);
-
-  
-        drawString11x16(5, 100, "B3 shape", color, COLOR_BLUE);
-        drawString5x7(20, 150, "B4 start over", color, COLOR_BLUE);
-	break;
-      default:
-	redrawScreen = 0;
-	break;
-      }
-  */
-  P1OUT &= ~LED_GREEN; //green_off
+  P1OUT &= ~LED_GREEN; //green_off actually red
   or_sr(0x10); // CPU off
   P1OUT |= LED_GREEN; //green on
     //}
